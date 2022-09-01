@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +8,7 @@ import java.util.Random;
 public class Main {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         Map<DayOfWeek, String> fatherSchedule = new HashMap<>();
         fatherSchedule.put(DayOfWeek.MONDAY, "do exercise");
         Map<DayOfWeek, String> motherSchedule = new HashMap<>();
@@ -15,15 +16,15 @@ public class Main {
         Map<DayOfWeek, String> childSchedule = new HashMap<>();
         childSchedule.put(DayOfWeek.SUNDAY, "sleep");
 
-        Human father = new Man("Vito", "Karleone", 1955,
+        Human father = new Man("Vito", "Karleone", "24/05/1974",
                 95,
                 fatherSchedule);
 
-        Human mother = new Woman("Jane", "Karleone", 1956,
+        Human mother = new Woman("Jane", "Karleone", "24/05/1976",
                 85,
                 motherSchedule);
 
-        Human child = new Human("Michael", "Karleone", 1977,
+        Human child = new Human("Michael", "Karleone", "24/05/2001",
                 90,
                 childSchedule);
 

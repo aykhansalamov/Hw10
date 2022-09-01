@@ -1,8 +1,9 @@
+import java.text.ParseException;
 import java.util.Map;
 
 public final class Woman extends Human{
-    public Woman (String name, String surname, int year, int iq, Map<DayOfWeek, String> schedule) {
-        super(name, surname, year, iq, schedule);
+    public Woman (String name, String surname, String birthDate, int iq, Map<DayOfWeek, String> schedule) throws ParseException {
+        super(name, surname, birthDate, iq, schedule);
     }
 
     public void greetPet() {

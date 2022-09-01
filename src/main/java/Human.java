@@ -1,15 +1,23 @@
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 
 public class Human {
+
+
     private String name;
     private String surname;
     private int year;
     private int iq;
     private Map<DayOfWeek, String> schedule;
     Family family;
+    private long birthDate;
+
+    public static final SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
     protected void finalize()
     {
@@ -33,12 +41,12 @@ public class Human {
         this.surname = surname;
     }
 
-    public int getYear() {
-        return year;
+    public long getBirthDate() {
+        return birthDate;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setBirthDate(long birthDate) {
+        this.birthDate = birthDate;
     }
 
     public int getIq() {
@@ -76,10 +84,10 @@ public class Human {
     public void greetPet() {
         System.out.println("Hello, " + Species.DOG);
     }
-    public Human(String name, String surname, int year, int iq, Map<DayOfWeek, String> schedule) {
+    public Human(String name, String surname, String birthDate, int iq, Map<DayOfWeek, String> schedule) throws ParseException {
         this.name = name;
         this.surname = surname;
-        this.year = year;
+        this.birthDate = describeAge(birthDate).getTime();
         this.iq = iq;
         this.schedule = schedule;
     }
@@ -92,7 +100,7 @@ public class Human {
         return "Human{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", year=" + year +
+                ", birth date=" + df.format(birthDate) +
                 ", iq=" + iq +
                 ", schedule=" + schedule +
                 '}';
@@ -101,13 +109,15 @@ public class Human {
     public Human() {
     }
 
-    public Human(String name, String surname, int year) {
+    public Human(String name, String surname, String birthdate) throws ParseException {
         this.name = name;
         this.surname = surname;
-        this.year = year;
+        this.birthDate = describeAge(String.valueOf(birthDate)).getTime();
     }
 
-
+    private Date describeAge(String birthDate) throws ParseException {
+        return df.parse(birthDate);
+    }
 
     public void describePet() {
         String slyLevel = "";
@@ -126,5 +136,6 @@ public class Human {
             System.out.println("I think " + family.getPet().getNickName() + " is not hungry.");
         }
     }
+
 
 }
